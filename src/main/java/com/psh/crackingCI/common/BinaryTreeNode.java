@@ -18,6 +18,9 @@ public class BinaryTreeNode {
 	@Setter @Getter
 	private BinaryTreeNode right;
 
+	@Setter @Getter
+	private BinaryTreeNode parent;
+
 	public BinaryTreeNode(int val) {
 		this.val = val;
 	}
