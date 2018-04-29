@@ -43,7 +43,7 @@ public class P12 {
         }
         
         res += getNumPathsForSum(n.getLeft(), targetSum, startSum + n.getVal());
-        res += getNumPathsForSum(n.getParent(), targetSum, startSum + n.getVal());
+        res += getNumPathsForSum(n.getRight(), targetSum, startSum + n.getVal());
         
         return res;
     }
