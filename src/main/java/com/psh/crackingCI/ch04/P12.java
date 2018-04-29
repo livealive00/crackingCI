@@ -29,7 +29,13 @@ public class P12 {
     }
     
     public static int getNumPathsForSum(BinaryTreeNode root, int targetSum) {
-        return getNumPathsForSum(root, targetSum, 0);
+        if (root == null) {
+            return 0;
+        }
+
+        return getNumPathsForSum(root, targetSum, 0)
+            + getNumPathsForSum(root.getLeft(), targetSum)
+            + getNumPathsForSum(root.getRight(), targetSum);
     }
     
     public static int getNumPathsForSum(BinaryTreeNode n, int targetSum, int startSum) {
