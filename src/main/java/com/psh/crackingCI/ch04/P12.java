@@ -2,6 +2,9 @@ package com.psh.crackingCI.ch04;
 
 import com.psh.crackingCI.common.BinaryTreeNode;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class P12 {
     public static void main(String args[]) {
         BinaryTreeNode root = new BinaryTreeNode(10);
@@ -26,6 +29,7 @@ public class P12 {
         n_2_3.setLeft(n_3_1);
         
         System.out.println(getNumPathsForSum(root, 10));
+        System.out.println(getNumPathsForSumFast(root, 10));
     }
     
     public static int getNumPathsForSum(BinaryTreeNode root, int targetSum) {
@@ -53,5 +57,45 @@ public class P12 {
         
         return res;
     }
-    
+
+    public static int getNumPathsForSumFast(BinaryTreeNode root, int targetSum) {
+        if (root == null) {
+            return 0;
+        }
+
+        Map<Integer, Integer> pathCnt = new HashMap<>();
+        return getNumPathsForSumFast(root, targetSum, 0, pathCnt);
+    }
+
+    public static int getNumPathsForSumFast(BinaryTreeNode n, int targetSum, int accumSum, Map<Integer, Integer> pathCnt) {
+        if (n == null) {
+            return 0;
+        }
+
+        accumSum += n.getVal();
+
+        int diffSum = accumSum - targetSum;
+        int totalPath = pathCnt.getOrDefault(diffSum, 0);
+        if (accumSum == targetSum) {
+            totalPath += 1;
+        }
+
+        incCache(pathCnt, accumSum, 1);
+        totalPath += getNumPathsForSumFast(n.getLeft(), targetSum, accumSum, pathCnt);
+        totalPath += getNumPathsForSumFast(n.getRight(), targetSum, accumSum, pathCnt);
+        incCache(pathCnt, accumSum, -1);
+
+        return totalPath;
+    }
+
+    public static void incCache(Map<Integer, Integer> pathCnt, int sum, int val) {
+        int incVal = pathCnt.getOrDefault(sum, 0) + val;
+        if (incVal == 0) {
+            pathCnt.remove(sum);
+        } else {
+            pathCnt.put(sum, incVal);
+        }
+    }
+
+
 }
