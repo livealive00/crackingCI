@@ -35,7 +35,7 @@ public class P08 {
 
 		for (char ch : charCnt.keySet()) {
 			int cnt = charCnt.get(ch);
-			if (cnt > 0) {˚
+			if (cnt > 0) {
 				charCnt.put(ch, cnt - 1);
 				getPerms(charCnt, prefix + ch, remaining-1, result);
 				charCnt.put(ch, cnt);
