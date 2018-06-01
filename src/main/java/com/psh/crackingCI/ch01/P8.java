@@ -1,5 +1,7 @@
 package com.psh.crackingCI.ch01;
 
+import com.psh.crackingCI.utils.Printer;
+
 /**
  * Created by Naver on 2018. 4. 8..
  */
@@ -14,7 +16,7 @@ public class P8 {
 
 		replaceZeros(mat);
 
-		P7.printMatrix(mat);
+		Printer.printMatrix(mat);
 	}
 
 	public static void replaceZeros(int[][] mat) {
