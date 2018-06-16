@@ -11,7 +11,7 @@ public class P03 {
 	}
 
 	public static int search(int[] arr, int x, int left, int right) {
-		int mid = left + right / 2;
+		int mid = (left + right) / 2;
 
 		if (arr[mid] == x) {
 			return mid;
@@ -22,18 +22,17 @@ public class P03 {
 
 		if (arr[left] < arr[mid]) { // left
 			if (x >= arr[left] && x < arr[mid]) {
-				search(arr, x, left, mid-1);
+				return search(arr, x, left, mid-1);
 			} else {
-				search(arr, x, mid+1, right);
+				return search(arr, x, mid+1, right);
 			}
 
 		} else if (arr[left] > arr[mid]){	// right
-			if (x >= arr[mid] && x <= arr[right]) {
-				search(arr, x, mid+1, right);
+			if (x > arr[mid] && x <= arr[right]) {
+				return search(arr, x, mid+1, right);
 			} else {
-				search(arr, x, left, mid-1);
+				return search(arr, x, left, mid-1);
 			}
-
 		}
 
 		return -1;
