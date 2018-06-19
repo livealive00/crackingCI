@@ -12,6 +12,45 @@ public class P00 {
 		System.out.println(Arrays.toString(bubbleSort(a)));
 		System.out.println(Arrays.toString(selectionSort(a)));
 		System.out.println(Arrays.toString(mergeSort(a)));
+		System.out.println(Arrays.toString(quickSort(a)));
+	}
+
+	public static int[] quickSort(int[] arr) {
+		int[] a = Arrays.copyOf(arr, arr.length);
+		quickSort(a, 0, a.length-1);
+		return a;
+	}
+
+	public static void quickSort(int[] arr, int left, int right) {
+		int mid = partition(arr, left, right);
+		if (left < mid-1) {
+			quickSort(arr, left, mid-1);
+		}
+		if (mid+1 < right) {
+			quickSort(arr, mid+1, right);
+		}
+	}
+
+	public static int partition(int[] arr, int left, int right) {
+		int val = arr[(left+right)/2];
+
+		while (left < right) {
+
+			while (arr[left] < val) {
+				left++;
+			}
+			while (arr[right] > val) {
+				right--;
+			}
+
+			if (left <= right) {
+				swap(arr, left, right);
+				left++;
+				right--;
+			}
+		}
+
+		return left;
 	}
 
 	public static int[] mergeSort(int[] arr) {
