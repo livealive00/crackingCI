@@ -1,6 +1,9 @@
 package com.psh.crackingCI.ch10;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by Naver on 2018. 6. 17..
@@ -13,6 +16,49 @@ public class P00 {
 		System.out.println(Arrays.toString(selectionSort(a)));
 		System.out.println(Arrays.toString(mergeSort(a)));
 		System.out.println(Arrays.toString(quickSort(a)));
+		System.out.println(Arrays.toString(radixSort(a)));
+	}
+
+	public static int[] radixSort(int[] oriArr) {
+		int[] arr = Arrays.copyOf(oriArr, oriArr.length);
+		int n = maxDigit(arr);
+		List<LinkedList<Integer>> buckets = new ArrayList<>();
+		for (int i = 0; i < 10; i++) {
+			buckets.add(new LinkedList<>());
+		}
+
+		for (int d = 1; d <= n; d++) {
+			for (int i = 0; i < arr.length; i++) {
+				int bucketIdx = (arr[i] / (d*10)) % 10;
+				buckets.get(bucketIdx).add(arr[i]);
+			}
+
+			int arrIdx = 0;
+			for(LinkedList<Integer> bucket : buckets) {
+				while (!bucket.isEmpty()) {
+					arr[arrIdx] = bucket.poll();
+					arrIdx++;
+				}
+			}
+		}
+		return arr;
+	}
+
+	public static int maxDigit(int[] arr) {
+		int max = Integer.MIN_VALUE;
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] > max) {
+				max = arr[i];
+			}
+		}
+
+		int exp = 1;
+		int n = 1;
+		while (max >= exp * 10) {
+			exp *= 10;
+			n++;
+		}
+		return n;
 	}
 
 	public static int[] quickSort(int[] arr) {
