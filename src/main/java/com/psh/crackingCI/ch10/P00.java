@@ -17,6 +17,26 @@ public class P00 {
 		System.out.println(Arrays.toString(mergeSort(a)));
 		System.out.println(Arrays.toString(quickSort(a)));
 		System.out.println(Arrays.toString(radixSort(a)));
+
+		System.out.println(binarySearch(quickSort(a), 21));
+	}
+
+	public static int binarySearch(int[] a, int x) {
+		return binarySearch(a, x, 0, a.length-1);
+	}
+
+	public static int binarySearch(int[] a, int x, int left, int right) {
+		if (left > right) {
+			return -1;
+		}
+		int mid = (left + right ) / 2;
+		if (x == a[mid]) {
+			return mid;
+		} else if (x < a[mid]) {
+			return binarySearch(a, x, left, mid-1);
+		} else {
+			return binarySearch(a, x, mid+1, right);
+		}
 	}
 
 	public static int[] radixSort(int[] oriArr) {
