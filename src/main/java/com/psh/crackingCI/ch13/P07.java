@@ -1,8 +1,6 @@
 package com.psh.crackingCI.ch13;
 
 import com.google.common.collect.Lists;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 
 import java.util.List;
 
