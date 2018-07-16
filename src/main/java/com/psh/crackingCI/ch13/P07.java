@@ -10,7 +10,8 @@ public class P07 {
         List<Country> countries = Lists.newArrayList(
                 new Country("A", 100),
                 new Country("B", 200),
-                new Country("A", 100),
+                new Country("A",
+                        100),
                 new Country("C", 300)
                 );
 
